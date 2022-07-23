@@ -12,11 +12,11 @@ class GEApiUtility {
   GEApiUtility._internal();
 
   String getRandomString({int length = 20}) {
-    const _chars =
+    const chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     return String.fromCharCodes(Iterable.generate(length, (_) {
-      var n = _random.nextInt(_chars.length);
-      return _chars.codeUnitAt(n);
+      var n = _random.nextInt(chars.length);
+      return chars.codeUnitAt(n);
     }));
   }
 }

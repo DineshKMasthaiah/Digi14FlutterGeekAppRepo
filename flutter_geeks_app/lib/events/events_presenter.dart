@@ -12,11 +12,6 @@ class GEEventsPresenter {
       this._eventsView
       );
 
-  void disposeAllData() {
-    _eventsRepository.resetRepositoryData();
-  }
-
-
   void searchEvents(String searchTerm) async {
     _eventsView.showLoading();
     var response = await _eventsRepository.searchEvents(searchTerm);
@@ -24,7 +19,11 @@ class GEEventsPresenter {
     if(response.isSuccessful) {
       _eventsView.showData( response.data);
     } else {
-      _eventsView.showErrorPopup("error loading data", "100");
+      _eventsView.showErrorPopup("error loading data", "-1");
     }
+  }
+
+  onDispose(){
+    _eventsRepository.cancelAllCalls();
   }
 }

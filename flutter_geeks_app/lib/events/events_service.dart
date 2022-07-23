@@ -12,12 +12,6 @@ class GEEventsService extends GEBaseServiceContract {
   GEEventsService(
     this._apiClient,
   );
-
-  bool cancelAllCalls() {
-    // TODO: implement cancelAllCalls
-    throw UnimplementedError();
-  }
-
   Future<GEGenericResponse> searchEvents(String searchTerm) async {
     GEGenericRequest request = GEGenericRequest(
         apiName: GEApiList.events,

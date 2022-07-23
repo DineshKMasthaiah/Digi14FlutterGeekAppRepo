@@ -3,6 +3,7 @@ import 'package:digi14_geeks_app/config/navigation_service.dart';
 import 'package:digi14_geeks_app/events/event_data_model.dart';
 import 'package:digi14_geeks_app/utils/ge_colors.dart';
 import 'package:digi14_geeks_app/utils/ge_styles.dart';
+import 'package:digi14_geeks_app/utils/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class GAEventDetailsScreen extends StatefulWidget {
@@ -39,8 +40,7 @@ class _GAEventDetailsScreenState extends State<GAEventDetailsScreen>
             padding: const EdgeInsets.only(top: 20.0,bottom: 20.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                  'https://seatgeek.com/images/performers-landscape/texas-rangers-c2f361/16/huge.jpg'),
+              child: Image.network(GEStringConstants.imageURL),
             ),
           ),
           Text('${widget.selectedEvent?.datetimeUtc}',

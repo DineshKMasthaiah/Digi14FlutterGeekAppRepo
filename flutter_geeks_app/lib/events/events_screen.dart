@@ -7,8 +7,8 @@ import 'package:digi14_geeks_app/common/widgets/favorite_widget.dart';
 import 'package:digi14_geeks_app/config/navigation_service.dart';
 import 'package:digi14_geeks_app/events/event_data_model.dart';
 import 'package:digi14_geeks_app/events/event_details_screen.dart';
-import 'package:digi14_geeks_app/utils/ge_logger.dart';
 import 'package:digi14_geeks_app/utils/ge_styles.dart';
+import 'package:digi14_geeks_app/utils/string_constants.dart';
 import 'package:flutter/material.dart';
 
 import 'events_presenter.dart';
@@ -48,7 +48,7 @@ class _EventScreenState extends State<GEEventsScreen>
     _inputController.selection = TextSelection.fromPosition(
         TextPosition(offset: _inputController.text.length));
     return Scaffold(
-        appBar: buildAppBar(context, "Events",
+        appBar: buildAppBar(context,GEStringConstants.eventsScreenTitle,
             controller: _inputController,
             showSearchBox: _showSearchBox,
             showSearchIcon: true,
@@ -71,7 +71,6 @@ class _EventScreenState extends State<GEEventsScreen>
     _typeDelayTrackingTimer =
         Timer.periodic(const Duration(seconds: 1), (Timer t) {
       t.cancel();
-      GELogger.showSnackBar("searching for $searchTerm");
       _presenter.searchEvents(searchTerm);
     });
   }
@@ -81,21 +80,15 @@ class _EventScreenState extends State<GEEventsScreen>
     showAlertDialog(
         context,
         GEAlertData(
-            title: code ?? "unknown",
-            body: error ?? "Unknown",
-            positiveButtonLabel: "OK"));
+            title: code ?? "",
+            body: error ?? "",
+            positiveButtonLabel: GEStringConstants.ok));
     if (mounted) {
       setState(() {
         showProgress = false;
         showAlert = true;
       });
     }
-  }
-
-  @override
-  void dispose() {
-    _presenter.disposeAllData();
-    super.dispose();
   }
 
   @override
@@ -146,8 +139,7 @@ class _EventScreenState extends State<GEEventsScreen>
       leading: Stack(alignment: Alignment.topLeft, children: <Widget>[
         ClipRRect(
             borderRadius: BorderRadius.circular(5),
-            child: Image.network(
-                'https://seatgeek.com/images/performers-landscape/texas-rangers-c2f361/16/huge.jpg')),
+            child: Image.network(GEStringConstants.imageURL)),
         GEFavoriteWidget(
           favorite: event?.favorite ?? true,
           onTap: (favorite) {
@@ -183,4 +175,11 @@ class _EventScreenState extends State<GEEventsScreen>
           .saveFavoriteEvent(event?.id ?? -1); //add
     }
   }
+
+  @override
+  void dispose() {
+    _presenter.onDispose();
+    super.dispose();
+  }
+
 }

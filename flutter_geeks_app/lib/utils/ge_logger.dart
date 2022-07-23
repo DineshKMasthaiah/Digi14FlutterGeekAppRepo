@@ -10,6 +10,7 @@ class GELogger {
     }
   }
 
+  //use it to debug issues
   static showSnackBar(String message) {
     if (kDebugMode) {
       ScaffoldMessenger.of(GENavigationService.getCurrentContext())

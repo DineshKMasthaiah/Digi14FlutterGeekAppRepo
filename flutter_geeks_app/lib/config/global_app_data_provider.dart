@@ -12,10 +12,6 @@ import 'package:flutter/widgets.dart';
 class GEGlobalAppDataProvider extends InheritedWidget {
   const GEGlobalAppDataProvider({
     Key? key,
-    required this.appTitle,
-    required this.buildFlavor,
-    required this.baseURL,
-
     required this.sharedPrefs,
     required this.apiClient,
 
@@ -24,11 +20,6 @@ class GEGlobalAppDataProvider extends InheritedWidget {
       required Widget child,
   }) : super(key: key, child: child);
 
-  final String appTitle;
-  final String buildFlavor;
-  final String baseURL;
-
-
   /// Global data repositories initialized everytime when the app is launched & populated with the data fetched from server
   final GEApiClient apiClient;
    final GESharedPrefsManager sharedPrefs;
@@ -36,7 +27,7 @@ class GEGlobalAppDataProvider extends InheritedWidget {
    /// Get Global Data provider based on the context.Make sure initializeDataObjects() is called before we call this method
   static GEGlobalAppDataProvider of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<
-        GEGlobalAppDataProvider>()!; //TODO:lets make sure that it doesn't go null & throw exception later.
+        GEGlobalAppDataProvider>()!;
   }
 
   ///Compare oldWidget with this widget & return the result.
@@ -51,7 +42,7 @@ class GEGlobalAppDataProvider extends InheritedWidget {
     }
     GELogger.log(
         "GEGlobalAppDataProvider:updateShouldNotify() called. probably data in this widget has changed? ");
-    return false; //TODO: later revisit this to understand it more
+    return false;
   }
 
 }

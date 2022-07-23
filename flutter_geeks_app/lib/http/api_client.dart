@@ -14,36 +14,31 @@ class GEApiClient {
   static const receiveTimeout = 60000; // 1 minute
   static final GEApiClient _apiClient = GEApiClient._internal();
   static Dio? _dio;
-  static String _baseURL = '';
 
   ///TDD: We will pass all dependencies as constructor arguments to make the code testable
   ///i.e lets not initiate any objects inside the classes (except POJOs) as testing & mocking becomes difficult
   factory GEApiClient(
-      Dio? dio,
-      String baseURL) {
+      Dio? dio) {
     _dio = dio;
-    _baseURL = baseURL; //TODO: do we need base URL  again?? its already configured
     _dio?.interceptors.clear();
     if (kDebugMode) {
       _dio?.interceptors.add(GEInterceptor());
     }
     return _apiClient;
   }
-
   GEApiClient._internal();
 
   /// Call an API endpoint and send the request.
   Future<GEGenericResponse> call(GEGenericRequest request) async {
     GEGenericResponse genResponse = GEGenericResponse(isSuccessful: true);
-    _dio?.options.baseUrl = _baseURL;
-    addHeaders(request);
+    addGenericRequestHeaders(request);
     Options requestLevelOptions = Options(
         method: request.method,
         receiveTimeout: receiveTimeout,
         sendTimeout: receiveTimeout,
         headers: request.httpHeaders);
 
-    var body = (request.jsonBody.isNotEmpty) ? request.jsonBody : "";
+    var body = (request.jsonBody.isNotEmpty) ? request.jsonBody : ""; // going forward, if we need to send body, we can make use of it.
     Response? response;
     try {
       GELogger.log("CancelRequest:${request.apiName} registered for cancelRequest?= ${request.cancelToken!=null}");
@@ -67,7 +62,6 @@ class GEApiClient {
       //what if we get 201?
       prepareSuccessResponse(genResponse, request, response);
     } else {
-
         genResponse.isSuccessful = false;
         genResponse.errorResponse = GEErrorResponse(
             code: response?.statusCode ?? GEHttpConstants.statusCodeUnknown,
@@ -76,7 +70,7 @@ class GEApiClient {
     }
     return genResponse;
   }
-
+/// sometimes, Dio returns both plain json string or json map
   prepareSuccessResponse(GEGenericResponse genResponse, GEGenericRequest request, Response? response) {
     genResponse.isSuccessful = true;
     if (response?.data is String) {
@@ -94,7 +88,7 @@ class GEApiClient {
   /// @visibleForTesting annotation tags this public method is only public for the sake of unit testing.
   /// so, it's shouldn't be called outside of the class by other classes. if they do, they will get warning.
   @visibleForTesting
-  void addHeaders(GEGenericRequest request) {
+  void addGenericRequestHeaders(GEGenericRequest request) {
     request.httpHeaders ??= {};
     request.httpHeaders
         ?.putIfAbsent(GEHttpConstants.headerConnection, () => "keep-alive");

@@ -25,14 +25,10 @@ void main() {
       receiveTimeout: GEApiClient.receiveTimeout,
   queryParameters: {GEHttpConstants.clientIdKey :GEURLConstants.clientId});
   var apiClient = GEApiClient(
-      Dio(baseHttpOptions),
-      GEURLConstants.baseURL);
+      Dio(baseHttpOptions));
    var eventsRepo = GEEventsRepository(GEEventsService(apiClient));
 
   var geeksEventProvider = GEGlobalAppDataProvider(
-    appTitle: GEStringConstants.prodAppTitle,
-    buildFlavor: GEStringConstants.prodAppFlavor,
-    baseURL: GEURLConstants.baseURL,
     sharedPrefs: sharedPrefs,
     apiClient: apiClient,
     eventsRepository: eventsRepo,
