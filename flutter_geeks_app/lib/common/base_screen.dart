@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:digi14_geeks_app/common/alert_data.dart';
 import 'package:digi14_geeks_app/common/widgets/favorite_widget.dart';
 import 'package:digi14_geeks_app/common/widgets/secondary_button.dart';
+import 'package:digi14_geeks_app/utils/ge_colors.dart';
 import 'package:digi14_geeks_app/utils/ge_padding.dart';
 import 'package:digi14_geeks_app/utils/ge_styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -158,18 +159,22 @@ class GEBaseScreen {
       elevation: 0,
       title: showSearchBox
           ? Padding(
-              padding: const EdgeInsets.only(left: 18.0),
+              padding: const EdgeInsets.only(left: 20.0,right: 20.0),
               child: TextField(
                 autofocus: true,
                 keyboardType: TextInputType.text,
                 enabled: true,
-                style: GEStyles.textFieldValue,
                 controller: controller,
                 obscureText: false,
                 decoration: const InputDecoration(
-                    labelText: "",
-                    hintText: 'Type here to search...',
-                    labelStyle: GEStyles.textFieldLabel),
+                  filled: true,
+                    fillColor: Colors.grey,
+                    prefixIcon: Icon(Icons.search),
+                    prefixIconColor: GEColors.white,
+                    suffixIcon: Icon(Icons.close),
+                    suffixIconColor: Colors.white,
+
+                   ),
                 onChanged: onTextChange,
               ),
             )

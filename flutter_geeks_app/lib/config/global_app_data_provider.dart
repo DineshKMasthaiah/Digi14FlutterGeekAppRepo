@@ -1,4 +1,4 @@
-import 'package:digi14_geeks_app/contact/events_repository.dart';
+import 'package:digi14_geeks_app/events/events_repository.dart';
 import 'package:digi14_geeks_app/http/api_client.dart';
 import 'package:digi14_geeks_app/storage/shared_prefs_manager.dart';
 import 'package:digi14_geeks_app/utils/ge_logger.dart';
@@ -19,7 +19,7 @@ class GEGlobalAppDataProvider extends InheritedWidget {
     required this.sharedPrefs,
     required this.apiClient,
 
-       required this.contactRepo,
+       required this.eventsRepository,
 
       required Widget child,
   }) : super(key: key, child: child);
@@ -32,7 +32,7 @@ class GEGlobalAppDataProvider extends InheritedWidget {
   /// Global data repositories initialized everytime when the app is launched & populated with the data fetched from server
   final GEApiClient apiClient;
    final GESharedPrefsManager sharedPrefs;
-    final GEEventsRepository contactRepo;
+    final GEEventsRepository eventsRepository;
    /// Get Global Data provider based on the context.Make sure initializeDataObjects() is called before we call this method
   static GEGlobalAppDataProvider of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<
@@ -44,7 +44,7 @@ class GEGlobalAppDataProvider extends InheritedWidget {
   @override
   bool updateShouldNotify(covariant GEGlobalAppDataProvider oldWidget) {
     if (oldWidget.sharedPrefs != sharedPrefs ||
-                oldWidget.contactRepo != contactRepo           ) {
+                oldWidget.eventsRepository != eventsRepository           ) {
       GELogger.log(
           "GEGlobalAppDataProvider:updateShouldNotify() called. data changed.Lets refresh widget tree");
       return true;
@@ -53,9 +53,5 @@ class GEGlobalAppDataProvider extends InheritedWidget {
         "GEGlobalAppDataProvider:updateShouldNotify() called. probably data in this widget has changed? ");
     return false; //TODO: later revisit this to understand it more
   }
-
-  resetRepositories() async {
-        //contactRepo.resetRepositoryData();
-     }
 
 }

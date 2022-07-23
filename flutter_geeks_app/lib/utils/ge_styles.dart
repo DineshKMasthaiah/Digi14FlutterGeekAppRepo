@@ -5,9 +5,9 @@ import 'ge_colors.dart';
 //in the code
 class GEStyles {
   static const TextStyle listItemTitle = TextStyle(
-    fontSize: 16.0,
-    color: GEColors.tncTextFooterColor,
-    fontStyle: FontStyle.normal,
+    fontSize: 18.0,
+    color: GEColors.black,
+    fontStyle: FontStyle.normal,fontWeight: FontWeight.bold
   );
   static const TextStyle textFieldValue =
   TextStyle(color: GEColors.white, fontSize: 16,fontWeight: FontWeight.bold,backgroundColor: GEColors.gray);

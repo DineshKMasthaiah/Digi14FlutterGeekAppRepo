@@ -1,5 +1,5 @@
 
-import 'package:digi14_geeks_app/contact/events_repository.dart';
+import 'package:digi14_geeks_app/events/events_repository.dart';
 
 import 'events_screen.dart';
 

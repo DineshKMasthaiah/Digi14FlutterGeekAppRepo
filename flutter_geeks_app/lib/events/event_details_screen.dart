@@ -1,11 +1,10 @@
 import 'package:digi14_geeks_app/common/base_screen.dart';
 import 'package:digi14_geeks_app/config/navigation_service.dart';
-import 'package:digi14_geeks_app/contact/event_data_model.dart';
+import 'package:digi14_geeks_app/events/event_data_model.dart';
 import 'package:digi14_geeks_app/utils/ge_colors.dart';
 import 'package:digi14_geeks_app/utils/ge_styles.dart';
 import 'package:flutter/material.dart';
 
-//TODO: Android 12 shows default-System owned splash screen. investigate it later
 class GAEventDetailsScreen extends StatefulWidget {
   final EventDataModel? selectedEvent;
 
@@ -25,7 +24,6 @@ class _GAEventDetailsScreenState extends State<GAEventDetailsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GEColors.backgroundGray,
       appBar: buildAppBar(context, widget.selectedEvent?.title ?? "",
           isFavorite: widget.selectedEvent?.favorite ?? false,
           onFavoriteTap: (favorite) {
@@ -35,21 +33,22 @@ class _GAEventDetailsScreenState extends State<GAEventDetailsScreen>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Divider(
-            color: GEColors.gray,
+            color: GEColors.black,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+            padding: const EdgeInsets.only(top: 20.0,bottom: 20.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: Image.network(
                   'https://seatgeek.com/images/performers-landscape/texas-rangers-c2f361/16/huge.jpg'),
             ),
           ),
-          Text(
-              '${widget.selectedEvent?.venue?.city},${widget.selectedEvent?.venue?.state}',
-              style: GEStyles.listItem2ndLine),
           Text('${widget.selectedEvent?.datetimeUtc}',
+              style: GEStyles.listItemTitle),
+          Text(
+              '${widget.selectedEvent?.venue?.city}, ${widget.selectedEvent?.venue?.state}',
               style: GEStyles.listItem2ndLine),
+
         ],
       ),
     );

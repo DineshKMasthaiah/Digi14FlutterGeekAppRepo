@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:digi14_geeks_app/config/global_app_data_provider.dart';
-import 'package:digi14_geeks_app/contact/events_repository.dart';
-import 'package:digi14_geeks_app/contact/events_service.dart';
+import 'package:digi14_geeks_app/events/events_repository.dart';
+import 'package:digi14_geeks_app/events/events_service.dart';
 import 'package:digi14_geeks_app/http/api_client.dart';
 import 'package:digi14_geeks_app/http/http_constants.dart';
 import 'package:digi14_geeks_app/http/skip_ssl_verification.dart';
@@ -27,7 +27,7 @@ void main() {
   var apiClient = GEApiClient(
       Dio(baseHttpOptions),
       GEURLConstants.baseURL);
-   var contactRepo = GEEventsRepository(GEContactService(apiClient));
+   var eventsRepo = GEEventsRepository(GEEventsService(apiClient));
 
   var geeksEventProvider = GEGlobalAppDataProvider(
     appTitle: GEStringConstants.prodAppTitle,
@@ -35,7 +35,7 @@ void main() {
     baseURL: GEURLConstants.baseURL,
     sharedPrefs: sharedPrefs,
     apiClient: apiClient,
-    contactRepo: contactRepo,
+    eventsRepository: eventsRepo,
     child: const GEApp(),
   );
   return runApp(geeksEventProvider);

@@ -1,5 +1,5 @@
 import 'package:digi14_geeks_app/common/base_screen.dart';
-import 'package:digi14_geeks_app/contact/events_screen.dart';
+import 'package:digi14_geeks_app/events/events_screen.dart';
 import 'package:digi14_geeks_app/utils/ge_app_theme.dart';
 import 'package:flutter/material.dart';
 

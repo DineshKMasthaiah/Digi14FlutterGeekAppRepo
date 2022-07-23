@@ -5,10 +5,9 @@ import 'package:digi14_geeks_app/common/base_screen.dart';
 import 'package:digi14_geeks_app/common/base_view.dart';
 import 'package:digi14_geeks_app/common/widgets/favorite_widget.dart';
 import 'package:digi14_geeks_app/config/navigation_service.dart';
-import 'package:digi14_geeks_app/contact/event_data_model.dart';
-import 'package:digi14_geeks_app/contact/event_details_screen.dart';
+import 'package:digi14_geeks_app/events/event_data_model.dart';
+import 'package:digi14_geeks_app/events/event_details_screen.dart';
 import 'package:digi14_geeks_app/utils/ge_logger.dart';
-import 'package:digi14_geeks_app/utils/ge_colors.dart';
 import 'package:digi14_geeks_app/utils/ge_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +37,7 @@ class _EventScreenState extends State<GEEventsScreen>
 
   @override
   void initState() {
-    _presenter = GEEventsPresenter(_provider.contactRepo, this);
+    _presenter = GEEventsPresenter(_provider.eventsRepository, this);
     _presenter.searchEvents(_searchInput);
     super.initState();
   }
@@ -62,7 +61,6 @@ class _EventScreenState extends State<GEEventsScreen>
           _searchInput = searchTerm;
           _triggerSearch(searchTerm);
         }),
-        backgroundColor: GEColors.backgroundGray,
         body: wrapProgressBar(context, _buildListView()));
   }
 
@@ -162,6 +160,7 @@ class _EventScreenState extends State<GEEventsScreen>
         children: [
           Text(
             event?.title ?? "",
+            overflow: TextOverflow.ellipsis,
             style: GEStyles.listItemTitle,
           ),
           Text('${event?.venue?.city},${event?.venue?.state}',
