@@ -23,7 +23,6 @@ abstract class GEBaseServiceContract {
       String responseJSON = originalResponse.jsonBody ??
           "";
       if (responseJSON.isNotEmpty) {
-        ///returns a "profile" json object
         parsedResponse.data = model?.getModel(
             responseJSON);
       } else if(originalResponse.mappedData != null) {

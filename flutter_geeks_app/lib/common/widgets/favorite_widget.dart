@@ -33,6 +33,4 @@ class _GEFavoriteWidgetState extends State<GEFavoriteWidget> {
       ),
     );
   }
-
-  _ontap() {}
 }
