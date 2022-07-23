@@ -1,16 +1,18 @@
-# digi14_geeks_app
+# digi14_geeks_event_app(GE App)
 
-flutter coding test project
+Flutter coding test project
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Flutter Geeks Event App enables the user to browse through events across the US states and events and  view the details.
 
-A few resources to get you started if this is your first Flutter project:
+API Information
+The endpoint to use on Seat Geek is free and publicly accessible, but you will need to
+register for a Seat Geek account and obtain an API key to use it. Details can be found at
+http://platform.seatgeek.com/
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+We can pass in the url param of q which will correspond to the search query. For example,
+the below query will give us a result set for the term Texas Ranger.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://api.seatgeek.com/2/events?client_id=&lt;your client id&gt;&amp;q=Texas+Ranger
+Full API documentation is available at http://platform.seatgeek.com/#events
