@@ -1,3 +1,4 @@
+///Container class that contains Strings used across the app.
 class GEStringConstants {
   static const String appTitle = "Geeks Event";
   static const String eventsScreenTitle = "Events";

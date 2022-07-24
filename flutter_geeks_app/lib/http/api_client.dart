@@ -6,9 +6,9 @@ import 'package:digi14_geeks_app/http/http_interceptor.dart';
 import 'package:digi14_geeks_app/utils/ge_logger.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
 import 'generic_request.dart';
 
+///API client class that connects to remote endpoint server and sends and receives request and responses
 class GEApiClient {
   static const connectionTimeout = 60000; //1 minute
   static const receiveTimeout = 60000; // 1 minute

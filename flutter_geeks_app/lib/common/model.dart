@@ -2,7 +2,6 @@
 abstract class GEModel {
   GEModel getModel(String responseJSON);
 
-  GEModel getModelFromMap(Map<String, dynamic> responseJSON) {
-    throw UnimplementedError();//TODO: look into later
-  }
+///Dio http framework returns Map responses for some requests.so, this method handles parsing map responses
+  GEModel getModelFromMap(Map<String, dynamic> responseJSON);
 }

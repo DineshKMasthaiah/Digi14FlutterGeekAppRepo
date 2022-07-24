@@ -1,6 +1,6 @@
 import 'package:digi14_geeks_app/utils/ge_logger.dart';
 import 'package:dio/dio.dart';
-
+///A request/response logging class
 class GEInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

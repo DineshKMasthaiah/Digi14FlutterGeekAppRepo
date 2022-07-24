@@ -5,7 +5,7 @@ import 'package:digi14_geeks_app/http/local_error_codes.dart';
 import 'package:dio/dio.dart';
 
 import 'model.dart';
-
+///Base class for All service classes. It contains implementation for parsing JSON and returning Model class that all services use.
 abstract class GEBaseServiceContract {
   CancelToken? cancelToken;
 
@@ -48,12 +48,12 @@ abstract class GEBaseServiceContract {
   }
 
 
-  /// Cancels pending requests if the request is not completed yet
+  /// Cancels pending requests if the request is not completed yet.
   /// returns true if the cancellation is successful false otherwise
   bool cancelAllRequests() {
     cancelToken?.cancel(GEHttpConstants.userCancelledRequest);
     bool isCancelled = cancelToken?.isCancelled ?? false;
-    cancelToken = CancelToken();
+    cancelToken = CancelToken();//reset cancel token
     return isCancelled;
   }
 }

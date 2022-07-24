@@ -2,6 +2,7 @@ import 'package:digi14_geeks_app/utils/ge_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+///A application-wide reusable button
 class GESecondaryButton extends StatefulWidget {
   final void Function()? onButtonPress;
   final String buttonText;

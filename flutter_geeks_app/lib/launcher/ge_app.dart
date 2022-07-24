@@ -5,7 +5,7 @@ import 'package:digi14_geeks_app/utils/string_constants.dart';
 import 'package:flutter/material.dart';
 
 import '../config/navigation_service.dart';
-
+///Top level widget
 class GEApp extends StatefulWidget {
   const GEApp({Key? key}) : super(key: key);
 

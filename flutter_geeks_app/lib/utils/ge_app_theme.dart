@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'ge_colors.dart';
-
+///Class that contains themes to be used across the application
 class GEAppTheme {
   //Add application-wide theme here.
   ThemeData getGlobalAppTheme(BuildContext context) {

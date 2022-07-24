@@ -6,7 +6,8 @@ import 'package:digi14_geeks_app/http/generic_response.dart';
 import 'package:digi14_geeks_app/utils/ge_logger.dart';
 
 import 'events_service.dart';
-
+///This class forms the core of the Model layer in MVP. It handles data and business logic.
+///It talks to Service class for data from server or DAO classes to get data from local storage
 class GEEventsRepository {
   final GEEventsService _eventsService;
    EventListDM? _eventListDM;//in memory cache
@@ -29,12 +30,11 @@ class GEEventsRepository {
     }
     return response;
   }
-
+///Call this method when we logout of the application
   void resetRepositoryData() {
     _eventListDM = null;
     cancelAllCalls();
   }
-
 
   bool cancelAllCalls(){
     _eventsService.cancelAllRequests();

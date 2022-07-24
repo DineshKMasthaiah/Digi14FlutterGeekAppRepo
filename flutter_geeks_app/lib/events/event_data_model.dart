@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:digi14_geeks_app/common/model.dart';
 
+/// Data model class for Geeks Event List JSON.
+/// NOTE: pls note that only  required(required by UI) attributes among many json attributes are considered here. rest are omitted.
 class EventListDM extends GEModel{
   List<EventDataModel>? events;
   Meta? meta;

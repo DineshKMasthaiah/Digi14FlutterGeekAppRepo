@@ -1,3 +1,4 @@
+///Http constants. not all of them currently used. but created for future use.
 class GEHttpConstants {
   static const String httpGet = "GET";
   static const String httpPost = "POST";

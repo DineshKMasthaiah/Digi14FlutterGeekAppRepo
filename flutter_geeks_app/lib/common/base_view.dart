@@ -1,4 +1,4 @@
-
+///Base view class for all the views.
 abstract class GEBaseViewContract {
   void showLoading();
 

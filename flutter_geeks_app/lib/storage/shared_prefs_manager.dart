@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
+///Shared prefs is used to store the  favorite/un-favorite events
 class GESharedPrefsManager {
   static final GESharedPrefsManager _sharedPrefs =
       GESharedPrefsManager._internal();

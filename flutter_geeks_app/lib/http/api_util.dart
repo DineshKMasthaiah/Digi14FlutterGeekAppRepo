@@ -1,5 +1,6 @@
 import 'dart:math';
-
+///A utility class to generate random number that is used as http request Identifier while making API call.
+///Request Identifiers help us in searching the request logs if we use any logging service in the backend.
 class GEApiUtility {
   static late Random _random;
   static GEApiUtility utility = GEApiUtility._internal();

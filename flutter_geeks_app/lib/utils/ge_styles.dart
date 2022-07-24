@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'ge_colors.dart';
 
-//in the code
+///Styles used across the app
 class GEStyles {
   static const TextStyle listItemTitle = TextStyle(
     fontSize: 18.0,

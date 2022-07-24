@@ -13,11 +13,6 @@ class GEFavoriteWidget extends StatefulWidget {
 
 class _GEFavoriteWidgetState extends State<GEFavoriteWidget> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../config/navigation_service.dart';
-
+///A logger that is used across the application
 class GELogger {
   static void log(String message) {
     if (kDebugMode) {

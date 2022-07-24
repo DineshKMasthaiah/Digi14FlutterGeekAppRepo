@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+///Colors used or going to use in the application
 class GEColors {
   static const Color gray = Color.fromRGBO(112, 112, 112, 1.0);
   static const Color black = Colors.black;

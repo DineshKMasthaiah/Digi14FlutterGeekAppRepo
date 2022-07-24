@@ -12,11 +12,12 @@ import 'package:digi14_geeks_app/utils/string_constants.dart';
 import 'package:flutter/material.dart';
 
 import 'events_presenter.dart';
-
+///Interface for event list view screen
 abstract class GEEventsViewContract extends GEBaseViewContract {
   void showData(EventListDM events);
 }
 
+///Screen that shows list of events
 class GEEventsScreen extends StatefulWidget {
   const GEEventsScreen({Key? key}) : super(key: key);
 
@@ -64,6 +65,9 @@ class _EventScreenState extends State<GEEventsScreen>
         body: wrapProgressBar(context, _buildListView()));
   }
 
+  ///This method contains  logic to listen for the user typing delay
+  ///and based on the delay, it decides that the user is done with typing search term they want to search
+  ///and triggers Search API call.
   void _triggerSearch(String searchTerm) {
     if (_typeDelayTrackingTimer?.isActive ?? false) {
       _typeDelayTrackingTimer?.cancel();

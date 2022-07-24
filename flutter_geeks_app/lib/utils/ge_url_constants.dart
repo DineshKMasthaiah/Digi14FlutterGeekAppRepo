@@ -1,3 +1,4 @@
+///URL related constants.Going forward, add all URL related constants here
 class GEURLConstants {
   static const String baseURL =
       "https://api.seatgeek.com";

@@ -10,18 +10,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 ///
-/// A utility class that acts as base for all the screens by enabling common code re usability
+/// A utility class that acts as a base for all the screens by enabling common code re-usability
+/// unlike Stateful and Stateless widget, it doesn't maintain any state & do not carry any inheritance tree
 class GEBaseScreen {
   bool showProgress = false;
 
   ///@showAlert is super attribute that is used by subclasses of @GEBaseScreen to show or hide alert
   bool showAlert = false;
   GEAlertData? alertData;
-
+///Returns screen size for the callers to calculate related height and width for the Widgets
   Size screenSize(BuildContext context) {
     return MediaQuery.of(context).size;
   }
 
+  /// This methods wraps a progress spinner for a given screen widget (passed as child).
   /// Pushes the progress bar down by [topPadding] or up by [bottomPadding] from it's default center of the screen position
   Widget wrapProgressBar(
     BuildContext context,
@@ -38,13 +40,14 @@ class GEBaseScreen {
         child: child,
       ),
       if (showProgress)
-        getProgressBar(
+        _getProgressBar(
             topPadding: topPadding,
             bottomPadding: bottomPadding,
             isBlueScreen: isBlueScreen),
     ]);
   }
 
+  /// Navigates the user to another screen
   Future<dynamic> gotoNextScreen(BuildContext context, Widget screen,
       {bool addToBackStack = false, bool clearHistory = false}) {
     ///Get the reference of Navigator in widget tree
@@ -62,7 +65,7 @@ class GEBaseScreen {
     }
   }
 
-  Widget getProgressBar({
+  Widget _getProgressBar({
     double topPadding = 0,
     double bottomPadding = 0,
     double loadedWidth = GEPadding.progressSpinnerWidth,
@@ -80,6 +83,7 @@ class GEBaseScreen {
     ));
   }
 
+/// Shows an Alert dialog. caller has to pass what information needs to be shown in the Alert
   showAlertDialog(BuildContext context, GEAlertData alertData) async {
     await showDialog(
         barrierDismissible: false,
@@ -119,14 +123,7 @@ class GEBaseScreen {
         });
   }
 
-  void showErrorDialog(BuildContext context, String? error, String? code) {
-    showAlertDialog(
-        context,
-        GEAlertData()
-          ..title = "Error $code"
-          ..body = error ?? 'unknown');
-  }
-
+  ///iOS specific Alert
   Widget _buildCupertinoAlert(BuildContext context, GEAlertData alertData) {
     return CupertinoAlertDialog(
       title: Text(alertData.title),
@@ -143,6 +140,7 @@ class GEBaseScreen {
     );
   }
 
+  /// Reusable AppBar that the caller can call with the required information
   AppBar buildAppBar(BuildContext context, String title,
       {TextEditingController? controller,
       bool showSearchIcon = false,

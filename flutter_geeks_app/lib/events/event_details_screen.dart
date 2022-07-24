@@ -6,6 +6,7 @@ import 'package:digi14_geeks_app/utils/ge_styles.dart';
 import 'package:digi14_geeks_app/utils/string_constants.dart';
 import 'package:flutter/material.dart';
 
+///Event detail screen Widget
 class GAEventDetailsScreen extends StatefulWidget {
   final EventDataModel? selectedEvent;
 

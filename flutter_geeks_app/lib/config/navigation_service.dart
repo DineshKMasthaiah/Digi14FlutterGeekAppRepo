@@ -1,6 +1,6 @@
 import 'package:digi14_geeks_app/config/global_app_data_provider.dart';
 import 'package:flutter/material.dart';
-//TODO: this class can be removed later once we resolve global context issue
+/// A class that returns global data provider and Global context
 class GENavigationService {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -9,10 +9,10 @@ class GENavigationService {
   }
 
   ///
-  /// when there is no context available for caller to call GlobalAppDataProvider.of(context),
+  /// Whenever there is no context available for caller to call GlobalAppDataProvider.of(context),
   /// the caller can use this. its like global application context
-  static BuildContext getCurrentContext() {//TODO: Lets test how it behaves with and without context later
+  static BuildContext getCurrentContext() {
     return navigatorKey
-        .currentContext!; //TODO:lets make sure that it doesn't go null & throw exception later.
+        .currentContext!;
   }
 }
