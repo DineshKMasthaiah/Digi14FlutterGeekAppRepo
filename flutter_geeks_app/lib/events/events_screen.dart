@@ -133,9 +133,12 @@ class _EventScreenState extends State<GEEventsScreen>
 
   ListTile _buildListTile(EventDataModel? event) {
     return ListTile(
-      onTap: () {
-        gotoNextScreen(
+      onTap: () async {
+        var needsScreenRefresh = await gotoNextScreen(
             context, addToBackStack: true, GAEventDetailsScreen(event));
+        if(needsScreenRefresh){
+          setState((){});
+        }
       },
       selectedTileColor: Colors.grey,
       contentPadding: const EdgeInsets.only(

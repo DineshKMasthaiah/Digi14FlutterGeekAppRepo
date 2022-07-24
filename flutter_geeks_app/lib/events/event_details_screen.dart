@@ -18,39 +18,42 @@ class GAEventDetailsScreen extends StatefulWidget {
 
 class _GAEventDetailsScreenState extends State<GAEventDetailsScreen>
     with GEBaseScreen {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+   bool _hasFavoriteStateChanged = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context, widget.selectedEvent?.title ?? "",
-          isFavorite: widget.selectedEvent?.favorite ?? false,
-          onFavoriteTap: (favorite) {
-        _onFavoriteTap(favorite, widget.selectedEvent);
-      },hideFavorite: false),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Divider(
-            color: GEColors.black,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0,bottom: 20.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.network(GEStringConstants.imageURL),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pop(_hasFavoriteStateChanged);
+        return true;
+      },
+      child: Scaffold(
+        appBar: buildAppBar(context, widget.selectedEvent?.title ?? "",
+            isFavorite: widget.selectedEvent?.favorite ?? false,
+            onFavoriteTap: (favorite) {
+              _hasFavoriteStateChanged = true;
+          _onFavoriteTap(favorite, widget.selectedEvent);
+        },hideFavorite: false),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Divider(
+              color: GEColors.black,
             ),
-          ),
-          Text('${widget.selectedEvent?.datetimeUtc}',
-              style: GEStyles.listItemTitle),
-          Text(
-              '${widget.selectedEvent?.venue?.city}, ${widget.selectedEvent?.venue?.state}',
-              style: GEStyles.listItem2ndLine),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0,bottom: 20.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(GEStringConstants.imageURL),
+              ),
+            ),
+            Text('${widget.selectedEvent?.datetimeUtc}',
+                style: GEStyles.listItemTitle),
+            Text(
+                '${widget.selectedEvent?.venue?.city}, ${widget.selectedEvent?.venue?.state}',
+                style: GEStyles.listItem2ndLine),
 
-        ],
+          ],
+        ),
       ),
     );
   }
