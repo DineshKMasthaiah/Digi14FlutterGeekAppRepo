@@ -6,6 +6,7 @@ import 'package:digi14_geeks_app/common/widgets/secondary_button.dart';
 import 'package:digi14_geeks_app/utils/ge_colors.dart';
 import 'package:digi14_geeks_app/utils/ge_padding.dart';
 import 'package:digi14_geeks_app/utils/ge_styles.dart';
+import 'package:digi14_geeks_app/utils/string_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -164,12 +165,13 @@ class GEBaseScreen {
                 enabled: true,
                 controller: controller,
                 obscureText: false,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   filled: true,
                     fillColor: Colors.grey,
-                    prefixIcon: Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search),
                     prefixIconColor: GEColors.white,
-                    suffixIcon: Icon(Icons.close),
+                    suffixIcon: InkWell(onTap: onSearchPressed,
+                        child: const Icon(Icons.close)),
                     suffixIconColor: Colors.white,
 
                    ),
@@ -186,8 +188,8 @@ class GEBaseScreen {
           InkWell(
             onTap: onSearchPressed,
             child: showSearchBox
-                ? const Center(child: Text("Cancel"))
-                : Image.asset('images/app_bar/search/ic_search_white.png'),
+                ? const Center(child: Text(GEStringConstants.cancel))
+                : Image.asset(GEStringConstants.searchIconPath),
           ),
            if(!hideFavorite)GEFavoriteWidget(favorite: isFavorite, onTap: (favorite){
              onFavoriteTap!(favorite);
