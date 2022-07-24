@@ -25,7 +25,7 @@ void main() {
   queryParameters: {GEHttpConstants.clientIdKey :GEURLConstants.clientId});
   var apiClient = GEApiClient(
       Dio(baseHttpOptions));
-   var eventsRepo = GEEventsRepository(GEEventsService(apiClient));
+   var eventsRepo = GEEventsRepository(GEEventsService(apiClient),sharedPrefs);
 
   var geeksEventProvider = GEGlobalAppDataProvider(
     sharedPrefs: sharedPrefs,
